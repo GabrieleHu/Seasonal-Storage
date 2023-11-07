@@ -1,0 +1,53 @@
+
+solar_data:
+  irradiation_profiles: solar_irradiation.csv
+  area_input_file: solar_areas.csv
+wind_data:
+  velocity_profiles: wind_velocity.csv
+  windpark_area_file: wind_areas.csv
+  windpark_list:
+  - windpark:
+      id: WPA
+      name: windpark location A
+      ecs:
+      - Wind_WPA_100
+      - Wind_WPA_125
+  - windpark:
+      id: WPB
+      name: windpark location B
+      ecs:
+      - Wind_WPB_100
+      - Wind_WPB_125
+ec_list:
+    - ec:
+        id: El
+        name: electricity generic
+        category: secondary
+    - ec:
+        id: CH4
+        name: methane generic
+        category: secondary
+    - ec:
+        id: Sol_S
+        name: Solar irradiation South
+        category: secondary
+    - ec:
+        id: Sol_W
+        name: Solar irradiation West
+        category: secondary
+    - ec:
+        id: Wind_WPA_100
+        name: windpark A 100m
+        category: secondary
+    - ec:
+        id: Wind_WPA_125
+        name: windpark A 125m
+        category: secondary
+    - ec:
+        id: Wind_WPB_100
+        name: windpark B 100m
+        category: secondary
+    - ec:
+        id: Wind_WPB_125
+        name: windpark B 125m
+        category: secondary

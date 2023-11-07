@@ -1,0 +1,29 @@
+# to create empty list use []
+tech_lists:
+  - tech_list:
+      id: default_hubli
+      techs:
+      - T_S_El_LiIon_2020_1
+      - T_C_El_CCGT_2020_2
+      - T_Sol_2020_1_Sol_W
+      - T_Sol_2020_1_Sol_S
+      - turbine_125m_Wind_WPA_125
+      - turbine_100m_Wind_WPA_100
+      - turbine_125m_Wind_WPB_125
+      - turbine_100m_Wind_WPB_100
+
+hubs:
+- hub:
+    id: H1
+    name: hub1
+    params:
+      techs_ref: default_hubli
+      preinstalled:
+        - tech:
+            id: T_S_El_LiIon_2020_1
+            capacity: 1000
+            age: 0
+      initial_SoC:
+        - storage:
+            id: T_S_El_LiIon_2020_1
+            SoC: 1000

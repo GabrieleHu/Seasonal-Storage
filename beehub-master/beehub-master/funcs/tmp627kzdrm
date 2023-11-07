@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Apr  5 15:51:54 2022
+
+@author: vija
+"""
+import pandas as pd
+from modules.solarClasses import solarProcessor
+
+surface_tilt = 20
+date_range = pd.date_range(start='1/1/2018', periods=8760, freq='H')
+solarProcessor(loc_settings, date_range, surface_tilt, data)

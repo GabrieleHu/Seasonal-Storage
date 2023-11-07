@@ -1,0 +1,56 @@
+network_techs:
+- network_tech:
+    id: ch4_pipe
+    name: Natural gas pipeline
+    params:
+        ec: CH4
+        loss: 0.01  # [0-1] Fraction of the flow rate [kwh/h], loss per meter
+    constraints:
+        lifetime: 20           # [years]
+        year_available: 2020   # [year]
+        unit_cap_min: 2000     # [kW]
+        unit_cap_max: 10000    # [kW]
+    costs:
+        interest_rate_ref: low # low or high
+        inv_fix: 1000          # [CHF/m]
+        inv_per_cap: 100       # [CHF/kW/m]
+        om_fix: 30             # [CHF/m]
+        om_per_cap: 10         # [CHF/kW/m]
+    emissions:
+        inv_CO2: 1              # kg CO2 per capacity installed kg-CO2/kW/m
+        om_CO2: 0.1             # kg CO2 emitted per kW / m transported (relevant e.g. for truck transport)
+- network_tech:
+    id: el_line
+    name: Electricity transmission
+    params:
+        ec: El
+        loss: 0  # [0-1] Fraction of the flow rate [kwh/h], loss per meter
+    constraints:
+        lifetime: 30           # [years]
+        year_available: 2010   # [year]
+        unit_cap_min: 500      # [kW] #TODO Link cap min
+        unit_cap_max: 100000    # [kW] #TODO Link cap max
+    costs:
+        interest_rate_ref: low # low or high
+        inv_fix: 1             # [CHF/m]
+        inv_per_cap: 1        # [CHF/kW/m]
+        om_fix: 0              # [CHF/m]
+        om_per_cap: 0         # [CHF/kW/m]
+    emissions:
+        inv_CO2: 1              # kg CO2 per capacity installed kg-CO2/kW/m
+        om_CO2: 0               # kg CO2 emitted per kW / m transported (relevant e.g. for truck transport)
+network_links:
+- link:
+    id: l12_a
+    name: l12 electricity line
+    params:
+      network_tech: el_line
+      length: 1
+      hub_out: H1
+      hub_in: H1
+    constraints:
+      preinstalled:
+        capacity: 0
+        age: 0
+      unidirectional: False  # if True, flow is only allowed in direction hub_out to hub_in, Unidirectional means from hub_out to hub_in
+      cap_max: 10000

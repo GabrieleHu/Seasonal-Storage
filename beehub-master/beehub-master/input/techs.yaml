@@ -1,0 +1,507 @@
+---
+in_ec_groups: 
+  - ec_group: # Solar radiation S and W
+      id: sol_group
+      ecs:
+      - Sol_S
+      - Sol_W
+  - ec_group: # Wind velocity WPA and WPB 100
+      id: wind_group_100
+      ecs:
+      - Wind_WPA_100
+      - Wind_WPB_100
+  - ec_group: # Wind velocity WPA and WPB 125
+      id: wind_group_125
+      ecs:
+      - Wind_WPA_125
+      - Wind_WPB_125
+
+technology_definitions:
+- tech: #SolarThermal_FlatPlateCollectors
+    node_class: converter
+    component: STC
+    type: FPC
+    id: STC_FPC
+    name: Solar Thermal Flat Plate Collectors
+    constraints_efficiency:
+      eta_0: 0.693
+      a1: 4.39
+      a2: 0.018
+      abs_coeff: 0.90
+      thermal_capacitance: 12.5
+      capacity_unit: m2
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 500  #1300
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+
+- tech: #SolarThermal_EvacuatedTubeCollectors
+    node_class: converter
+    component: STC
+    type: ETC
+    id: STC_ETC
+    name: Solar Thermal Evacuated Tube Collectors
+    constraints_efficiency:
+      eta_0: 0.719
+      a1: 1.063
+      a2: 0.005
+      abs_coeff: 0.92
+      thermal_capacitance: 14.1
+      capacity_unit: m2
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 500 #1380
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0   
+      
+- tech: #ThermalEnergyStorage_HotWaterTank
+    node_class: storage
+    component: WTES
+    type: HotWater
+    id: WTES_HotWater
+    name: Hot Water Tank 
+    constraints_efficiency:
+      efficiency_class: B
+      volume_range: high # higher than 2000 lt
+      capacity_unit: m3
+    constraints_general:
+      lifetime_years: 50
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 500
+      inv_per_cap: 300
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+
+- tech: #BoreholeThermalEnergyStorage
+    node_class: storage
+    component: BTES
+    type: Cylindrical
+    id: BTES_Cyl
+    name: Cylindrical BTES 
+    constraints_efficiency:
+      lambda_ground: 2.0
+      cv_ground: 2500
+      lambda_ins: 0.04
+      thickness_ins: 0.20
+      insdepth_to_height: 0.1
+      height_to_diameter: 1.0
+      capacity_unit: m3
+    constraints_general:
+      lifetime_years: 30
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 0
+      inv_per_cap: 4.65
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+      
+      
+- tech: #BoreholeThermalEnergyStorage
+    node_class: storage
+    component: BTES
+    type: Parallelepip
+    id: BTES_Par
+    name: Parallelepipedical BTES 
+    constraints_efficiency:
+      lambda_ground: 2.0
+      cv_ground: 2500
+      lambda_ins: 0.04
+      thickness_ins: 0.20
+      insdepth_to_height: 0.1
+      length_to_height: 0.373
+      width_to_height: 0.267
+      capacity_unit: m3
+    constraints_general:
+      lifetime_years: 30
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 0
+      inv_per_cap: 4.65
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+
+- tech: #AirSourceHeatPump
+    node_class: converter
+    component: HP
+    type: AW
+    id: AWHP
+    name: Air to Water Heat Pump 
+    constraints_efficiency:
+      cop: [4.86, 3.70]    # EN 14511 Test conditions (e), (f)
+      Qmax: [90, 90]   #[12.11, 12.04] # EN 14511 Test conditions (a), (b)
+      deT: 5
+      Tsup: 45  # nominal (intended as average, then it may change during operation)
+      capacity_unit: kW
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 576
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+
+
+- tech: #WaterWaterHeatPump
+    node_class: converter
+    component: HP
+    type: WW
+    id: WWHP
+    name: Water to Water Heat Pump 
+    constraints_efficiency:
+      cop: [4.86, 3.70]    # EN 14511 Test conditions (e), (f)
+      Qmax: [12.11, 12.04] # EN 14511 Test conditions (a), (b)
+      deT: 5
+      Tsup: 45  # nominal (intended as average, then it may change during operation)
+      capacity_unit: kW
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 576
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0       
+      
+      
+- tech: #AirCooledChiller
+    node_class: converter
+    component: CHILL
+    type: AW
+    id: CHILL_AW
+    name: Air Cooled Chiller
+    constraints_efficiency:
+      eer: [4.09, 2.68]    # EN 14511 Test conditions (c), (d)
+      Qmax: [12.46, 8.86]  # EN 14511 Test conditions (c), (d)
+      deT: 3
+      Tsup: 18  # nominal (intended as average, then it may change during operation)
+      capacity_unit: kW
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 576
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+      
+- tech: #WaterCooledChiller
+    node_class: converter
+    component: CHILL
+    type: WW
+    id: CHILL_WW
+    name: Water Cooled Chiller
+    constraints_efficiency:  
+      eer: [4.09, 2.68]     # EN 14511 Test conditions (c), (d)
+      Qmax: [12.46, 12.0]   # EN 14511 Test conditions (c), (d)  [12.46, 8.86]
+      deT: 3
+      Tsup: 18  # nominal (intended as average, then it may change during operation)
+      capacity_unit: kW
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 576
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+      
+- tech: #PV_System
+    node_class: converter
+    component: PV
+    type: MONO
+    id: PV_MONO
+    name: Monocrystalline PV 
+    constraints_efficiency:
+      module_power: 0.44 # kW
+      eta_ref: 0.21      # 
+      beta_ref: 0.35     # K-1
+      T_ref: 25          # Standard Test Conditions (STC):  Irradiance 1 000 W / m² • Cell temperature 25°C • AM 1.5 
+      T_noct: 41         # Nominal Operating Cell Temperature (NOCT): Irradiance 800 W / m² • Air temp 20°C  • Wind speed 1 m/s
+      capacity_unit: kW
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 500
+      inv_per_cap: 1500
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+         
+      
+- tech: # Litium Battery Slow
+    node_class: storage
+    component: BAT
+    type: Slow
+    id: BAT_Slow
+    name: Litium Battery Slow
+    constraints_efficiency:
+      charge_time: 14  # hrs
+      discharge_time: 14  # hrs
+      capacity_unit: hours
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 1380
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+      
+      
+- tech: # Litium Battery Fast
+    node_class: storage
+    component: BAT
+    type: Fast
+    id: BAT_Fast
+    name: Litium Battery Fast
+    constraints_efficiency:
+      charge_time: 8  # hrs
+      discharge_time: 8  # hrs
+      capacity_unit: hours
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 1380
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0
+      
+      
+      
+      
+- tech: # Litium Battery UltraFast
+    node_class: storage
+    component: BAT
+    type: UltraFast
+    id: BAT_UltraFast
+    name: Litium Battery UltraFast
+    constraints_efficiency:
+      charge_time: 2  # hrs
+      discharge_time: 2  # hrs
+      capacity_unit: hours
+    constraints_general:
+      lifetime_years: 20
+      unit_cap_min: 0
+      TRL:
+        - [2015, 8]
+        - [2020, 11]
+      last_installation_year: inf
+      max_cap_sys: inf 
+    constraints_conversion:
+      min_out_yearly: 0
+      max_out_yearly: inf
+      min_load: 0
+      max_load: 1
+      costs_om_per_energy: 0
+    costs:
+      unit: CHF
+      interest_rate_ref: high
+      inv_fix: 8420
+      inv_per_cap: 1380
+      om_fix: 0
+      om_per_cap: 0
+    emissions:
+      inv_fix_CO2: 0
+      inv_per_cap_CO2: 0

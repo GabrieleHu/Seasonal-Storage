@@ -1,0 +1,56 @@
+- stage:
+    id: S1
+    import_hubs:
+    - hub:
+        id: H1
+        import_ecs:
+
+            - ec:
+                id: CH4
+                hourly_profiles:
+                default_co2: 0.2
+                default_price: 0.02
+                default_primary_energy_fraction:
+                default_min_cap: 0
+                default_max_cap: 100000
+
+            - ec:
+                id: Sol_W
+                default_co2: 0
+                default_price: 0
+
+            - ec:
+                id: Sol_S
+                default_co2: 0
+                default_price: 0
+
+            - ec:
+                id: Wind_WPA_100
+                default_co2: 0
+                default_price: 0
+
+            - ec:
+                id: Wind_WPA_125
+                default_co2: 0
+                default_price: 0
+
+            - ec:
+                id: Wind_WPB_100
+                default_co2: 0
+                default_price: 0
+
+            - ec:
+                id: Wind_WPB_125
+                default_co2: 0
+                default_price: 0
+
+    export_hubs:
+    - hub:
+        id: H1
+        export_ecs:
+        - ec:
+            id: El
+            hourly_profiles:
+            default_price: 100
+            default_min_cap: 0
+            default_max_cap: 1000000
